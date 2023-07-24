@@ -1,0 +1,13 @@
+
+
+.content-row {
+    border: 1px solid black;
+    height: 100px;
+    overflow: visible;
+}
+
+.content-card {
+    border: 1px solid black;
+    height: 100%;
+    width: 800px;
+}
