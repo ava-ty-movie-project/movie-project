@@ -1,3 +1,5 @@
+(async() => {
+
 // Global Variables ////////////////////////////////////////
 
 const favoriteRow = document.querySelector('.favorite-row');
@@ -23,18 +25,61 @@ function getMovies() {
         console.log(error);
     })
 }
+
+function getImages() {
+    const url = `https://api.themoviedb.org/3/collection/collection_id/images?api_key=${MOVIE_TOKEN}`;
+    const options = {
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    return fetch (url, options).then((response) => {
+        return response.json();
+    }).catch(error => {
+        console.log(error);
+    })
+}
+
+function renderImages() {
+
+}
 function renderMovies(movies) {
 
-        for (let result of movies.results) {
+        for (let movie of movies.results) {
             const movieData = document.createElement('div');
             movieData.classList.add('content-card');
 
             movieData.innerHTML = `
-        <h1>${result.title}</h1>
+           <div class="card grab-test">
+            <div class="grab-inner">
+                <div class="card-front">
+                    <p>${movie.title}</p>
+                    <button class="flip-btn-back">Flip</button>
+                </div>
+                <div class="card-back">
+                    <p>Back Side</p>
+                    <button class="flip-btn-front">Flip</button>
+                </div>
+            </div>
+         </div>
         
     `//add a button with class of 'add-btn'
             contentRow.appendChild(movieData);
-    }
+            movieData.querySelector(".flip-btn-back").addEventListener("click", () => {
+                const test = movieData.querySelector(".grab-test");
+                test.classList.add('test');
+                const inner = movieData.querySelector(".grab-inner");
+                inner.classList.add('card-inner');
+            })
+
+            movieData.querySelector(".flip-btn-front").addEventListener("click", () => {
+                const removeClass = movieData.querySelector(".grab-test");
+                removeClass.classList.remove('test');
+                const removeInnerClass = movieData.querySelector(".grab-inner");
+                removeInnerClass.classList.remove('card-inner');
+            })
+        }
 }
 function getFavorites() {
     const url = `http://localhost:3000/favorites`;
@@ -63,13 +108,36 @@ function renderFavorites(favorites) {
         favorite.classList.add('content-card');
 
         favorite.innerHTML = `
-        <h1>${movie.title}</h1>
-        <button type="button" class="remove-btn">Test</button>
-        
-    `
+        <div class="card grab-test">
+            <div class="grab-inner">
+                <div class="card-front">
+                    <p>${movie.title}</p>
+                    <button class="flip-btn-back">Flip</button>
+                </div>
+                <div class="card-back">
+                    <p>Back Side</p>
+                    <button class="flip-btn-front">Flip</button>
+                </div>
+            </div>
+         </div>
+        `;
         favoriteRow.appendChild(favorite);
+        favorite.querySelector(".flip-btn-back").addEventListener("click", () => {
+            const test = favorite.querySelector(".grab-test");
+            test.classList.add('test');
+            const inner = favorite.querySelector(".grab-inner");
+            inner.classList.add('card-inner');
+        })
+
+        favorite.querySelector(".flip-btn-front").addEventListener("click", () => {
+            const removeClass = favorite.querySelector(".grab-test");
+            removeClass.classList.remove('test');
+            const removeInnerClass = favorite.querySelector(".grab-inner");
+            removeInnerClass.classList.remove('card-inner');
+        })
         }
     }
+
 function addToFavorites() {
     const contentCard = document.querySelector('.content-card');
     const addFavorite = contentCard.querySelector('add-btn');
@@ -107,7 +175,7 @@ function editFavorites() {
 
 
 
-(() => {
+
 
 getMovies().then((movies) => {
 
@@ -126,14 +194,17 @@ renderMovies(movies);
 
 
 
-
-    removeFromFavorites();
+    // removeFromFavorites();
 
     getFavorites().then((favData) => {
     console.log(favData);
 
     renderFavorites(favData);
 
+
+    getImages().then((movieData) => {
+        console.log(movieData);
+    })
 
 //////// End of Iffy /////////////////////////////////////////////////////////////////////////////////
     }).catch(error => {
