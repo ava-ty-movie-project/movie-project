@@ -7,10 +7,10 @@
       "rating": 5
     },
     {
-      "id": 8,
-      "title": "The Godfather",
-      "genre": "Crime",
-      "rating": 5
+      "tmdbId": 298618,
+      "title": "The Flash",
+      "rating": 6.9,
+      "id": 8
     }
   ]
 }
