@@ -63,9 +63,11 @@ function renderMovies(movies) {
                 </div>
             </div>
          </div>
+
         
-    `//add a button with class of 'add-btn'
+    `
             contentRow.appendChild(movieData);
+
             movieData.querySelector(".flip-btn-back").addEventListener("click", () => {
                 const test = movieData.querySelector(".grab-test");
                 test.classList.add('test');
@@ -80,6 +82,7 @@ function renderMovies(movies) {
                 removeInnerClass.classList.remove('card-inner');
             })
         }
+
 }
 function getFavorites() {
     const url = `http://localhost:3000/favorites`;
@@ -143,13 +146,24 @@ function addToFavorites() {
     const addFavorite = contentCard.querySelector('add-btn');
     addFavorite.addEventListener('click', ()=> {
         favoriteRow.appendChild(contentCard);
+
     })
 
 }
-function removeFromFavorites(favorite) {
-    const removeButton = movieCard.querySelector('.remove-btn');
-    removeButton.addEventListener('click', ()=> {
-        console.log('Test');
+function removeFromFavorites(id) {
+    const url = `http://localhost:3000/favorites/${id}`;
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    return fetch(url, options).then((response) => {
+        return response.json();
+
+    }).catch(error => {
+        console.log(error)
     })
 }
 function editFavorites() {
@@ -173,6 +187,12 @@ function editFavorites() {
 
 }
 
+//Events
+
+
+
+
+
 
 
 
@@ -189,6 +209,8 @@ renderMovies(movies);
 }).catch(error => {
     console.log(error)
 })
+
+
 
 
 
