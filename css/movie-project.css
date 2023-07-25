@@ -1,13 +1,26 @@
-
-
+.favorite-row {
+    border: 1px solid black;
+    display: flex;
+    gap: 10px;
+    overflow: auto;
+    width: 100%;
+}
 .content-row {
     border: 1px solid black;
-    height: 100px;
-    overflow: visible;
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    gap: 10px;
 }
 
 .content-card {
     border: 1px solid black;
-    height: 100%;
-    width: 800px;
+    min-width: 400px;
+    aspect-ratio: 3/4;
 }
+
+#remove-btn {
+    justify-content: center;
+    align-items: end;
+}
+
