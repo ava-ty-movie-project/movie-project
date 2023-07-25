@@ -31,9 +31,22 @@ function renderMovies(movies) {
 
             movieData.innerHTML = `
         <h1>${result.title}</h1>
+        <button type="button" class="add-btn">Test</button>
         
-    `//add a button with class of 'add-btn'
+    `
             contentRow.appendChild(movieData);
+        let addButton = movieData.querySelector('.add-btn')
+        addButton.addEventListener('click', ()=> {
+            let favoriteResult = result.map({
+                "id": result.id,
+                "title": result.title,
+                "genre": result.genre_ids,
+                "rating": result.vote_average
+            })
+            console.log(favoriteResult);
+            addToFavorites(favoriteResult.id)
+            location.reload();
+        })
     }
 }
 function getFavorites() {
@@ -64,24 +77,48 @@ function renderFavorites(favorites) {
 
         favorite.innerHTML = `
         <h1>${movie.title}</h1>
-        <button type="button" class="remove-btn">Test</button>
+        <button type="button" id='${movie.id}' class="remove-btn">Test</button>
         
     `
         favoriteRow.appendChild(favorite);
+        let removeButton = favorite.querySelector('.remove-btn');
+        removeButton.addEventListener('click', () => {
+            removeFromFavorites(movie.id);
+            location.reload();
+        });
         }
     }
-function addToFavorites() {
-    const contentCard = document.querySelector('.content-card');
-    const addFavorite = contentCard.querySelector('add-btn');
-    addFavorite.addEventListener('click', ()=> {
-        favoriteRow.appendChild(contentCard);
+function addToFavorites(id) {
+    const url = `http://localhost:3000/favorites/${id}`;
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    return fetch(url, options).then((response) => {
+        return response.json();
+
+    }).catch(error => {
+        console.log(error)
     })
 
 }
-function removeFromFavorites(favorite) {
-    const removeButton = movieCard.querySelector('.remove-btn');
-    removeButton.addEventListener('click', ()=> {
-        console.log('Test');
+function removeFromFavorites(id) {
+    const url = `http://localhost:3000/favorites/${id}`;
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    return fetch(url, options).then((response) => {
+        return response.json();
+
+    }).catch(error => {
+        console.log(error)
     })
 }
 function editFavorites() {
@@ -105,6 +142,12 @@ function editFavorites() {
 
 }
 
+//Events
+
+
+
+
+
 
 
 (() => {
@@ -127,7 +170,7 @@ renderMovies(movies);
 
 
 
-    removeFromFavorites();
+    // removeFromFavorites();
 
     getFavorites().then((favData) => {
     console.log(favData);
