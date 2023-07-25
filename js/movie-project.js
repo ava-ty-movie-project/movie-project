@@ -1,3 +1,5 @@
+(async() => {
+
 // Global Variables ////////////////////////////////////////
 
 const favoriteRow = document.querySelector('.favorite-row');
@@ -23,31 +25,64 @@ function getMovies() {
         console.log(error);
     })
 }
+
+function getImages() {
+    const url = `https://api.themoviedb.org/3/collection/collection_id/images?api_key=${MOVIE_TOKEN}`;
+    const options = {
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    return fetch (url, options).then((response) => {
+        return response.json();
+    }).catch(error => {
+        console.log(error);
+    })
+}
+
+function renderImages() {
+
+}
 function renderMovies(movies) {
 
-        for (let result of movies.results) {
+        for (let movie of movies.results) {
             const movieData = document.createElement('div');
             movieData.classList.add('content-card');
 
             movieData.innerHTML = `
-        <h1>${result.title}</h1>
-        <button type="button" class="add-btn">Test</button>
+           <div class="card grab-test">
+            <div class="grab-inner">
+                <div class="card-front">
+                    <p>${movie.title}</p>
+                    <button class="flip-btn-back">Flip</button>
+                </div>
+                <div class="card-back">
+                    <p>Back Side</p>
+                    <button class="flip-btn-front">Flip</button>
+                </div>
+            </div>
+         </div>
+
         
     `
             contentRow.appendChild(movieData);
-        let addButton = movieData.querySelector('.add-btn')
-        addButton.addEventListener('click', ()=> {
-            let favoriteResult = result.map({
-                "id": result.id,
-                "title": result.title,
-                "genre": result.genre_ids,
-                "rating": result.vote_average
+
+            movieData.querySelector(".flip-btn-back").addEventListener("click", () => {
+                const test = movieData.querySelector(".grab-test");
+                test.classList.add('test');
+                const inner = movieData.querySelector(".grab-inner");
+                inner.classList.add('card-inner');
             })
-            console.log(favoriteResult);
-            addToFavorites(favoriteResult.id)
-            location.reload();
-        })
-    }
+
+            movieData.querySelector(".flip-btn-front").addEventListener("click", () => {
+                const removeClass = movieData.querySelector(".grab-test");
+                removeClass.classList.remove('test');
+                const removeInnerClass = movieData.querySelector(".grab-inner");
+                removeInnerClass.classList.remove('card-inner');
+            })
+        }
+
 }
 function getFavorites() {
     const url = `http://localhost:3000/favorites`;
@@ -76,32 +111,42 @@ function renderFavorites(favorites) {
         favorite.classList.add('content-card');
 
         favorite.innerHTML = `
-        <h1>${movie.title}</h1>
-        <button type="button" id='${movie.id}' class="remove-btn">Test</button>
-        
-    `
+        <div class="card grab-test">
+            <div class="grab-inner">
+                <div class="card-front">
+                    <p>${movie.title}</p>
+                    <button class="flip-btn-back">Flip</button>
+                </div>
+                <div class="card-back">
+                    <p>Back Side</p>
+                    <button class="flip-btn-front">Flip</button>
+                </div>
+            </div>
+         </div>
+        `;
         favoriteRow.appendChild(favorite);
-        let removeButton = favorite.querySelector('.remove-btn');
-        removeButton.addEventListener('click', () => {
-            removeFromFavorites(movie.id);
-            location.reload();
-        });
+        favorite.querySelector(".flip-btn-back").addEventListener("click", () => {
+            const test = favorite.querySelector(".grab-test");
+            test.classList.add('test');
+            const inner = favorite.querySelector(".grab-inner");
+            inner.classList.add('card-inner');
+        })
+
+        favorite.querySelector(".flip-btn-front").addEventListener("click", () => {
+            const removeClass = favorite.querySelector(".grab-test");
+            removeClass.classList.remove('test');
+            const removeInnerClass = favorite.querySelector(".grab-inner");
+            removeInnerClass.classList.remove('card-inner');
+        })
         }
     }
-function addToFavorites(id) {
-    const url = `http://localhost:3000/favorites/${id}`;
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
 
-    return fetch(url, options).then((response) => {
-        return response.json();
+function addToFavorites() {
+    const contentCard = document.querySelector('.content-card');
+    const addFavorite = contentCard.querySelector('add-btn');
+    addFavorite.addEventListener('click', ()=> {
+        favoriteRow.appendChild(contentCard);
 
-    }).catch(error => {
-        console.log(error)
     })
 
 }
@@ -150,7 +195,7 @@ function editFavorites() {
 
 
 
-(() => {
+
 
 getMovies().then((movies) => {
 
@@ -170,6 +215,7 @@ renderMovies(movies);
 
 
 
+
     // removeFromFavorites();
 
     getFavorites().then((favData) => {
@@ -177,6 +223,10 @@ renderMovies(movies);
 
     renderFavorites(favData);
 
+
+    getImages().then((movieData) => {
+        console.log(movieData);
+    })
 
 //////// End of Iffy /////////////////////////////////////////////////////////////////////////////////
     }).catch(error => {
