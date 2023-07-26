@@ -10,7 +10,7 @@
     {
       "tmbdId": "17",
       "title": "The Godfather",
-      "rating": "6",
+      "rating": "9",
       "poster_path": "/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
       "id": 17
     },
@@ -43,13 +43,6 @@
       "id": 21
     },
     {
-      "tmdbId": 385687,
-      "title": "Fast X",
-      "rating": 7.3,
-      "poster_path": "/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
-      "id": 22
-    },
-    {
       "tmdbId": 671,
       "title": "Harry Potter and the Philosopher's Stone",
       "rating": 7.918,
@@ -57,18 +50,25 @@
       "id": 24
     },
     {
-      "tmdbId": 1059638,
+      "tmbdId": "25",
       "title": "Mr. Car and the Knights Templar",
-      "rating": 6.1,
+      "rating": "11",
       "poster_path": "/xEAXVe0BzW4K9Ky6eTo4CJwzJ8P.jpg",
       "id": 25
     },
     {
-      "tmdbId": 675,
-      "title": "Harry Potter and the Order of the Phoenix",
-      "rating": 7.69,
-      "poster_path": "/5aOyriWkPec0zUDxmHFP9qMmBaj.jpg",
+      "tmdbId": 678512,
+      "title": "Sound of Freedom",
+      "rating": 8,
+      "poster_path": "/1laG6ntAYpTOxx2H5Gh0Ku0HZON.jpg",
       "id": 26
+    },
+    {
+      "tmdbId": 8587,
+      "title": "The Lion King",
+      "rating": 8.257,
+      "poster_path": "/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg",
+      "id": 27
     }
   ]
 }
