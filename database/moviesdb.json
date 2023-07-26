@@ -1,16 +1,74 @@
 {
   "favorites": [
     {
-      "id": 7,
-      "title": "The Godfather",
-      "genre": "Crime",
-      "rating": 5
-    },
-    {
       "tmdbId": 298618,
       "title": "The Flash",
       "rating": 6.9,
-      "id": 8
+      "poster_path": "/rktDFPbfHfUbArZ6OOOKsXcv0Bm.jpg",
+      "id": 14
+    },
+    {
+      "tmdbId": 447365,
+      "title": "Guardians of the Galaxy Vol. 3",
+      "rating": 8.1,
+      "poster_path": "/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
+      "id": 15
+    },
+    {
+      "tmdbId": 238,
+      "title": "The Godfather",
+      "rating": 8.711,
+      "poster_path": "/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+      "id": 17
+    },
+    {
+      "tmdbId": 872585,
+      "title": "Oppenheimer",
+      "rating": 8.4,
+      "poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+      "id": 18
+    },
+    {
+      "tmdbId": 976573,
+      "title": "Elemental",
+      "rating": 7.6,
+      "poster_path": "/8riWcADI1ekEiBguVB9vkilhiQm.jpg",
+      "id": 19
+    },
+    {
+      "tmdbId": 459003,
+      "title": "Mavka: The Forest Song",
+      "rating": 7.5,
+      "poster_path": "/eeJjd9JU2Mdj9d7nWRFLWlrcExi.jpg",
+      "id": 20
+    },
+    {
+      "tmdbId": 667538,
+      "title": "Transformers: Rise of the Beasts",
+      "rating": 7.5,
+      "poster_path": "/gPbM0MK8CP8A174rmUwGsADNYKD.jpg",
+      "id": 21
+    },
+    {
+      "tmdbId": 385687,
+      "title": "Fast X",
+      "rating": 7.3,
+      "poster_path": "/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
+      "id": 22
+    },
+    {
+      "tmdbId": 671,
+      "title": "Harry Potter and the Philosopher's Stone",
+      "rating": 7.918,
+      "poster_path": "/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg",
+      "id": 24
+    },
+    {
+      "tmdbId": 1059638,
+      "title": "Mr. Car and the Knights Templar",
+      "rating": 6.1,
+      "poster_path": "/xEAXVe0BzW4K9Ky6eTo4CJwzJ8P.jpg",
+      "id": 25
     }
   ]
 }

@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Movie Project</title>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/my_resets.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/movie-project.css">
@@ -22,22 +23,23 @@
     <header class="container">
         <div class="row navbar">
             <h1>Movie Project</h1>
-            <input id="search-box" placeholder="Search movie" type="text">
-            <button id="search-btn" type="submit">Go</button>
+            <div class="input-group">
+                <input id="search-box" type="text" class="input" placeholder="Search movies">
+                <input id="search-btn" class="button--submit" value="Go" type="submit">
+            </div>
         </div>
     </header>
-    <div class="container search-container hidden">
-
-    </div>
     <main class="container">
+        <div class="container search-container hidden">
+        </div>
         <div class="title row">
-            <h1>Favorites</h1>
+            <h2>Favorites</h2>
         </div>
         <div class="favorite-row">
 
         </div>
         <div class="row title">
-            <h1>Content</h1>
+            <h2>Discover</h2>
         </div>
         <div class="content-row">
 
