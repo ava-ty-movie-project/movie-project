@@ -1,5 +1,4 @@
 
-
 body {
     background-color: black;
 }
@@ -14,6 +13,7 @@ body {
 
 header {
     background-color: #1f2126;
+    margin-bottom: 20px;
 }
 
 .title {
@@ -41,9 +41,19 @@ header {
     gap: 10px;
     height: 400px;
     padding-left: 20px;
-    margin-bottom: 60px;
 }
 
+.popular-row {
+    border: 1px solid black;
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    gap: 10px;
+    height: 400px;
+    padding-left: 20px;
+}
+
+/*movie cards start ==============================*/
 .content-card {
     height: 100%
 }
@@ -86,6 +96,7 @@ header {
     font-size: 24px;
     height: 40px;
     width: 40px;
+    margin-bottom: 10px;
 }
 
 .edit-btn {
@@ -97,12 +108,6 @@ header {
     border: none;
     padding: 10px;
 }
-
-
-
-
-
-
 
 .poster{
     min-width: 150px;
@@ -167,6 +172,16 @@ header {
     font-family: 'Sarabun', sans-serif;
 }
 
+.flip-btn-front {
+    background-color: #1f2126;
+    border: #1f2126;
+    color: white;
+    height: 40px;
+    width: 40px;
+    font-size: 25px;
+}
+/*movie cards end =========================*/
+
 .hidden {
     display: none;
 }
@@ -177,19 +192,30 @@ header {
     overflow: auto;
 }
 
-.flip-btn-front {
-    background-color: #1f2126;
-    border: #1f2126;
-    color: white;
+.search-close-button {
+    width: 120px;
     height: 40px;
-    width: 40px;
-    font-size: 25px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.13);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    background: #5e4dcd;
+    letter-spacing: 0.7px;
+    padding: 20px;
+    font-family: 'Sarabun', sans-serif;
+    margin-bottom: 40px;
+    transition: transform .5s ease-out;
 }
 
-
-
-
-
+.search-close-button:hover {
+    transform: scale(1.15);
+}
 
 /*https://uiverse.io/vinodjangid07/neat-seahorse-99*/
 .submitBtn {
