@@ -33,6 +33,11 @@ header {
     padding-left: 20px;
     height: 400px;
 }
+
+.favorite-row::-webkit-scrollbar{
+    display: none;
+}
+
 .content-row {
     border: 1px solid black;
     width: 100%;
@@ -43,6 +48,10 @@ header {
     padding-left: 20px;
 }
 
+.content-row::-webkit-scrollbar{
+    display: none;
+}
+
 .popular-row {
     border: 1px solid black;
     width: 100%;
@@ -51,6 +60,10 @@ header {
     gap: 10px;
     height: 400px;
     padding-left: 20px;
+}
+
+.popular-row::-webkit-scrollbar{
+    display: none;
 }
 
 /*movie cards start ==============================*/
