@@ -404,14 +404,14 @@
         }
     })
 
-    // getting the discover movies
+    // getting the discover movies on page load
     getMovies().then((movies) => {
         renderMovies(movies);
     }).catch(error => {
         console.log(error)
     });
 
-    // getting popular movies
+    // getting popular movies on page load
     getPopularMovies().then((data) => {
         // console.log(data);
         renderPopularMovies(data);
@@ -419,7 +419,7 @@
         console.log(error)
     });
 
-    // getting favorite movies
+    // getting favorite movies on page load
     getFavorites().then((favData) => {
         renderFavorites(favData);
     }).catch(error => {
