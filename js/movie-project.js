@@ -28,20 +28,21 @@ function getMovies() {
     })
 }
 
-// function getImages() {
-//     const url = `https://api.themoviedb.org/3/collection/collection_id/images?api_key=${MOVIE_TOKEN}`;
-//     const options = {
-//         method:'GET',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         }
-//     }
-//     return fetch (url, options).then((response) => {
-//         return response.json();
-//     }).catch(error => {
-//         console.log(error);
-//     })
-// }
+function getImages() {
+    const url = `https://api.themoviedb.org/3/movie/1/images`;
+    const options = {
+        method:'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${MOVIE_BEARER_TOKEN}`
+        }
+    }
+    return fetch (url, options).then((response) => {
+        return response.json();
+    }).catch(error => {
+        console.log(error);
+    })
+}
 
 function getSearchMovies() {
     const userSearch = userInput.value;
@@ -60,18 +61,19 @@ function getSearchMovies() {
         console.log(error);
     })
 }
-
 function renderSearchMovies(movies) {
-    for (let result of movies.results) {
-        const searchData = document.createElement('div');
-        searchData.classList.remove('hidden');
+        for (let result of movies.results) {
+            const searchData = document.createElement('div');
+            searchRow.classList.remove('hidden');
+            searchRow.classList.add('search-wrap');
 
-        searchData.innerHTML = `
+            searchData.innerHTML = `
             <div class="card grab-test">
-                <div class="grab-inner">
-                    <div class="card-front">
-                        <p>${result.title}</p>
-                        <button class="flip-btn-back">Flip</button>
+                <div class="grab-inner d-flex">
+                    <div class="card-front d-flex flex-column">
+                        <img class="poster" src="https://image.tmdb.org/t/p/w185/${result.poster_path}" alt="movie poster">
+                        <button class="submitBtn flip-btn-back">Flip<svg fill="white" viewBox="0 0 448 512" height="1em" class="arrow"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                        </button>
                     </div>
                     <div class="card-back">
                         <p>Back Side</p>
@@ -81,41 +83,38 @@ function renderSearchMovies(movies) {
                 </div>
             </div>
             `;
-        searchRow.appendChild(searchData);
-        let addButton = movieData.querySelector('.add-btn')
-        addButton.addEventListener('click', ()=> {
-            let favoriteResult = {
-                "tmdbId": result.id,
-                "title": result.title,
-                "rating": result.vote_average
-            }
-            console.log(favoriteResult);
-            addToFavorites(favoriteResult)
-            location.reload();
-        })
+            searchRow.appendChild(searchData);
+            let addButton = searchData.querySelector('.add-btn')
+            addButton.addEventListener('click', ()=> {
+                let favoriteResult = {
+                    "tmdbId": result.id,
+                    "title": result.title,
+                    "rating": result.vote_average
+                }
+                console.log(favoriteResult);
+                addToFavorites(favoriteResult)
+                location.reload();
+            })
 
-        movieData.querySelector(".flip-btn-back").addEventListener("click", () => {
-            const test = movieData.querySelector(".grab-test");
-            test.classList.add('test');
-            const inner = movieData.querySelector(".grab-inner");
-            inner.classList.add('card-inner');
-        })
+            searchData.querySelector(".flip-btn-back").addEventListener("click", () => {
+                const test = searchData.querySelector(".grab-test");
+                test.classList.add('test');
+                const inner = searchData.querySelector(".grab-inner");
+                inner.classList.add('card-inner');
+            })
 
-        movieData.querySelector(".flip-btn-front").addEventListener("click", () => {
-            const removeClass = movieData.querySelector(".grab-test");
-            removeClass.classList.remove('test');
-            const removeInnerClass = movieData.querySelector(".grab-inner");
-            removeInnerClass.classList.remove('card-inner');
-        })
+            searchData.querySelector(".flip-btn-front").addEventListener("click", () => {
+                const removeClass = searchData.querySelector(".grab-test");
+                removeClass.classList.remove('test');
+                const removeInnerClass = searchData.querySelector(".grab-inner");
+                removeInnerClass.classList.remove('card-inner');
+            })
+        }
     }
-}
-
-
 function renderImages() {
 
 }
 function renderMovies(movies) {
-
         for (let result of movies.results) {
             const movieData = document.createElement('div');
             movieData.classList.add('content-card');
@@ -123,9 +122,10 @@ function renderMovies(movies) {
             movieData.innerHTML = `
             <div class="card grab-test">
                 <div class="grab-inner">
-                    <div class="card-front">
-                        <p>${result.title}</p>
-                        <button class="flip-btn-back">Flip</button>
+                    <div class="card-front d-flex flex-column">
+                        <img class="poster" src="https://image.tmdb.org/t/p/w185/${result.poster_path}" alt="movie poster">
+                        <button class="submitBtn flip-btn-back">Flip<svg fill="white" viewBox="0 0 448 512" height="1em" class="arrow"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                        </button>
                     </div>
                     <div class="card-back">
                         <p>Back Side</p>
@@ -283,12 +283,6 @@ function editFavorites() {
 }
 
 //Events
-
-
-
-
-
-
 userInput.addEventListener('keyup', (e)=> {
     if(e.code === 'Enter') {
         getSearchMovies().then((results) =>{
@@ -321,11 +315,11 @@ userInput.addEventListener('keyup', (e)=> {
 
 
 
-    // getImages().then((movieData) => {
-    //     console.log(movieData);
-    // })
-    // }).catch(error => {
-    //     console.log(error);
+    getImages().then((movieData) => {
+        console.log(movieData);
+    })
+    }).catch(error => {
+        console.log(error);
 
 //////// End of Iffy /////////////////////////////////////////////////////////////////////////////////
 
