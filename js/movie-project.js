@@ -378,7 +378,8 @@
 
     }
 
-//Events
+//Events ///////////////////////////////////////////////
+
     // allows you to submit the search by pressing the enter key
     userInput.addEventListener('keyup', (e) => {
         if (e.code === 'Enter') {
@@ -395,12 +396,19 @@
         })
     })
 
-    // hides the content besides the navbar and the searched movies
+    // hides the content besides the navbar and the searched movies on enter
     userInput.addEventListener('keyup', (e) => {
         if (e.code === 'Enter') {
             for (let row of hideSearch) {
                 row.classList.add('hidden');
             }
+        }
+    })
+
+    // hides the content besides the navbar and the searched movies on button click
+    searchBtn.addEventListener('click', () => {
+        for (let row of hideSearch) {
+            row.classList.add('hidden');
         }
     })
 
